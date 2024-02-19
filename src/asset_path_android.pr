@@ -1,29 +1,22 @@
 {[ let extension = asset.format /]}
 {[ let folder = "" /]}
+{[ let mode = (asset.group.name.contains("dark") == true ? "night" : "notnight") /]}
 
 {* Prepare folder based on scale *}
 {[ switch asset.scale ]}
-    {[ case "x1" ]}
-        {[ folder = "res/drawable-hdpi" /]}
     {[ case "x2" ]}
-        {[ folder = "res/drawable-xhdpi" /]}
+        {[ folder = ("res/drawable-" + mode + "-xhdpi") /]}
     {[ case "x3" ]}
-        {[ folder = "res/drawable-xxhdpi" /]}
+        {[ folder = ("res/drawable-" + mode + "-xxhdpi") /]}
     {[ case "x4" ]}
-        {[ folder = "res/drawable-xxxhdpi" /]}
+        {[ folder = ("res/drawable-" + mode + "-xxxhdpi") /]}
 {[/]}
 
 {* Generate name as [originalName][-numberOfDuplicates][extension] *}
 {[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("_" + asset.previouslyDuplicatedNames) : "") /]}
-{[ let name = (asset.originalName.lowercased().replacing(" ", "_") + duplicateExtension + "." + asset.format) /]}
+{[ let name = (asset.originalName.lowercased() + duplicateExtension + "." + asset.format) /]}
 
-{* Generate path from segments *}
-{[ let path = (asset.group.path.append(asset.group.name).join("_").replacing(" ", "_").lowercased()) /]}
-{[ log path /]}
-
-{* Retrieve asset path *}
-{[ if (path.count() > 0) ]}
-    {{ folder }}/{{ path + "_" }}{{ name }}
-{[ else ]}
+{* Filter icons *}
+{[ if (asset.group.name != "Icons") ]}
     {{ folder }}/{{ name }}
 {[/]}
