@@ -16,7 +16,8 @@
 {[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("_" + asset.previouslyDuplicatedNames) : "") /]}
 {[ let name = (asset.originalName.lowercased() + duplicateExtension + "." + asset.format) /]}
 
-{* Filter icons *}
-{[ if (asset.group.name != "Icons") ]}
+{* Filter icons, flags and providers *}
+{[ let group = asset.group.name /]}
+{[ if (group != "Icons" && group != "Flags" && group != "Providers") ]}
     {{ folder }}/{{ name }}
 {[/]}
