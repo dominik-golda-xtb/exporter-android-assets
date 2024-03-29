@@ -1,0 +1,15 @@
+{[ let extension = asset.format /]}
+{[ let group = asset.group.name /]}
+{[ let parent = asset.group.parent.name /]}
+
+{[ if (parent == "Icons") ]}
+    {[ let folder = "icons" /]}
+
+    {* Generate name as [originalName][-numberOfDuplicates][extension] *}
+    {[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("_" + asset.previouslyDuplicatedNames) : "") /]}
+    {[ let name = (asset.originalName.lowercased() + duplicateExtension + "." + extension) /]}
+
+    {[ let nameTrimmed = ("ic_" + name) /]}
+    
+    {{ folder }}/{{ nameTrimmed }}
+{[/]}

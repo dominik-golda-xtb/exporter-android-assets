@@ -18,6 +18,24 @@
             "scale": "4x",
             "format": "png",
             "type": "image"
+        },
+        {
+            "write_using": "flags_path_android.pr",
+            "scale": "1x",
+            "format": "svg",
+            "type": "image"
+        },
+                {
+            "write_using": "providers_path_android.pr",
+            "scale": "1x",
+            "format": "svg",
+            "type": "image"
+        },
+        {
+            "write_using": "icons_path_android.pr",
+            "scale": "1x",
+            "format": "svg",
+            "type": "image"
         }
     ]
 }

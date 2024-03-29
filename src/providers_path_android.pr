@@ -2,23 +2,15 @@
 {[ let group = asset.group.name /]}
 {[ let parent = asset.group.parent.name /]}
 
-{[ if (parent == "Illustrations" ) ]}
+{[ if (parent == "Providers") ]}
     {[ let mode = (group.contains("dark") == true ? "night" : "notnight") /]}
-    {[ let folder = "" /]}
-
-    {* Prepare folder based on scale *}
-    {[ switch asset.scale ]}
-      {[ case "x2" ]}
-         {[ folder = ("res/drawable-" + mode + "-xhdpi") /]}
-      {[ case "x3" ]}
-          {[ folder = ("res/drawable-" + mode + "-xxhdpi") /]}
-      {[ case "x4" ]}
-          {[ folder = ("res/drawable-" + mode + "-xxxhdpi") /]}
-    {[/]}
+    {[ let folder = ("providers/" + mode)/]}
 
     {* Generate name as [originalName][-numberOfDuplicates][extension] *}
     {[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("_" + asset.previouslyDuplicatedNames) : "") /]}
     {[ let name = (asset.originalName.lowercased() + duplicateExtension + "." + extension) /]}
 
-    {{ folder }}/{{ name }}
+    {[ let nameTrimmed = ("provider_" + name) /]}
+    
+    {{ folder }}/{{ nameTrimmed }}
 {[/]}
