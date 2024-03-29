@@ -20,19 +20,7 @@
             "type": "image"
         },
         {
-            "write_using": "flags_path_android.pr",
-            "scale": "1x",
-            "format": "svg",
-            "type": "image"
-        },
-                {
-            "write_using": "providers_path_android.pr",
-            "scale": "1x",
-            "format": "svg",
-            "type": "image"
-        },
-        {
-            "write_using": "icons_path_android.pr",
+            "write_using": "vector_path_android.pr",
             "scale": "1x",
             "format": "svg",
             "type": "image"

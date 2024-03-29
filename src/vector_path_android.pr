@@ -1,0 +1,27 @@
+{[ let extension = asset.format /]}
+{[ let group = asset.group.name /]}
+{[ let parent = asset.group.parent.name /]}
+
+{[ log ("parent: " + parent + " group: " + group + " name: " + asset.originalName) /]}
+
+{* Generate name as [originalName][-numberOfDuplicates][extension] *}
+{[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("_" + asset.previouslyDuplicatedNames) : "") /]}
+{[ let name = (asset.originalName.lowercased() + duplicateExtension + "." + extension) /]}
+
+{[ switch parent ]}
+      {[ case "Flags" ]}
+        {[ let folder = "flags" /]}
+        {[ let nameTrimmed = ("flag_country_" + name.split("_")[0]) /]}
+        {[ let fileExtension = (nameTrimmed.contains(extension) ? "" : ("." + extension)) /]}
+        {[ let filePath = (folder + "/" + nameTrimmed + fileExtension) /]}
+        {{ filePath }}
+      {[ case "Providers" ]}
+        {[ let mode = (group.contains("dark") == true ? "night" : "notnight") /]}
+        {[ let folder = ("providers/" + mode)/]}
+        {[ let nameTrimmed = ("provider_" + name) /]}
+        {{ folder }}/{{ nameTrimmed }}
+      {[ case "Icons" ]}
+          {[ let folder = "icons" /]}
+          {[ let nameTrimmed = ("ic_" + name) /]}
+          {{ folder }}/{{ nameTrimmed }}
+{[/]}
